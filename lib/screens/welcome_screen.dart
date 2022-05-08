@@ -33,7 +33,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
                 const Text(
-                  'MessageMe',
+                  'Message Me',
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.w900,
