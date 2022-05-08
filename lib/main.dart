@@ -21,12 +21,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MessageMe app',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       // home: ChatScreen(),
-      initialRoute:
-          _auth != null ? ChatScreen.screenRoute : WelcomeScreen.screenRoute,
+      initialRoute: _auth.currentUser == null
+          ? WelcomeScreen.screenRoute
+          : ChatScreen.screenRoute,
       routes: {
         WelcomeScreen.screenRoute: (context) => const WelcomeScreen(),
         SignInScreen.screenRoute: (context) => const SignInScreen(),

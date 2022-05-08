@@ -1,7 +1,7 @@
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/widgets/my_button.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -23,6 +23,11 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   iconTheme: IconThemeData(color: Colors.black),
+      // ),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -33,7 +38,10 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               SizedBox(
                 height: 180,
-                child: Image.asset('images/logo.png'),
+                child: Hero(
+                  tag: 'logo',
+                  child: Image.asset('images/logo.png'),
+                ),
               ),
               const SizedBox(height: 50),
               TextField(
@@ -123,7 +131,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     final user = await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
                     if (user != null) {
-                      Navigator.pushNamed(context, ChatScreen.screenRoute);
+                      Navigator.pushReplacementNamed(
+                          context, ChatScreen.screenRoute);
                       setState(() {
                         showSpinner = false;
                       });

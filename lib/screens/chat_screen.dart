@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/welcome_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,9 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow[900],
+        leading: Container(),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('images/logo.png', height: 25),
             const SizedBox(width: 10),
@@ -72,11 +75,15 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
             onPressed: () {
               _auth.signOut();
-              Navigator.pop(context);
+              Navigator.pushReplacementNamed(
+                  context, WelcomeScreen.screenRoute);
               // getMessages();
               // messagesStreams();
             },
-            icon: const Icon(Icons.close),
+            icon: const Icon(
+              Icons.logout,
+              size: 20,
+            ),
           )
         ],
       ),

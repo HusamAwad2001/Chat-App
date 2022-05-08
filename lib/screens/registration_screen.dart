@@ -1,7 +1,7 @@
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/widgets/my_button.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -25,6 +25,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   iconTheme: IconThemeData(color: Colors.black),
+      // ),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -35,7 +40,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             children: [
               Container(
                 height: 180,
-                child: Image.asset('images/logo.png'),
+                child: Hero(
+                  tag: 'logo',
+                  child: Image.asset('images/logo.png'),
+                ),
               ),
               SizedBox(height: 50),
               TextField(
@@ -126,7 +134,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   try {
                     final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
-                    Navigator.pushNamed(context, ChatScreen.screenRoute);
+                    Navigator.pushReplacementNamed(
+                        context, ChatScreen.screenRoute);
                     setState(() {
                       showSpinner = false;
                     });
