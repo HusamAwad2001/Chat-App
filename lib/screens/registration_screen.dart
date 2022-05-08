@@ -25,7 +25,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       // appBar: AppBar(
       //   backgroundColor: Colors.white,
       //   elevation: 0,
@@ -39,14 +38,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
+              SizedBox(
                 height: 180,
                 child: Hero(
                   tag: 'logo',
                   child: Image.asset('images/logo.png'),
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
